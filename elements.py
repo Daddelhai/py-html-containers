@@ -1,4 +1,4 @@
-from .low.container import HTMLContainer, ChildableHTMLContainer
+from .low.container import HTMLContainer, ChildableHTMLContainer, Text
 
 class Div(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
@@ -59,3 +59,19 @@ class Form(ChildableHTMLContainer):
 class Grid(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
         super().__init__("grid", *args, **kwargs)
+
+class Meta(HTMLContainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__("meta", *args, **kwargs)
+
+class Title(ChildableHTMLContainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__("title", *args, **kwargs)
+
+class Head(ChildableHTMLContainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__("head", *args, **kwargs)
+
+class Body(ChildableHTMLContainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__("body", *args, **kwargs)
