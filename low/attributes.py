@@ -2,12 +2,12 @@ from .base import ListBase
 
 
 class HTMLAttribute:
-    def __init__(self, name, value=None):
+    def __init__(self, name, value=True):
         self.name = name
         self.value = value
 
     def __str__(self):
-        if self.value is None:
+        if isinstance(self.value, bool):
             return f'{self.name}'
         else:
             return f'{self.name}="{self.value}"'

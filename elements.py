@@ -56,6 +56,10 @@ class Form(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
         super().__init__("form", *args, **kwargs)
 
+class Input(HTMLContainer):
+    def __init__(self, *args, **kwargs):
+        super().__init__("input", *args, **kwargs)
+
 class Grid(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
         super().__init__("grid", *args, **kwargs)
@@ -75,3 +79,5 @@ class Head(ChildableHTMLContainer):
 class Body(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
         super().__init__("body", *args, **kwargs)
+
+from .specialelements import *

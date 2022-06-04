@@ -19,7 +19,7 @@ class Text(HTMLContainerBase):
 
 class HTMLContainer(HTMLContainerBase):
     def __init__(self, objtype: str, attributes: Optional[HTMLAttributesDict|dict] = None, classes: Optional[HTMLClassAttribute|list] = None):
-        self.type = objtype
+        self._objtype = objtype
         self.attr = HTMLAttributesDict(attributes) if attributes is not None else HTMLAttributesDict()
         if classes is not None:
             for cls in classes:
@@ -27,7 +27,7 @@ class HTMLContainer(HTMLContainerBase):
 
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
-        return f"<{self.type}{attributes_str}/>"
+        return f"<{self._objtype}{attributes_str}/>"
 
     @property
     def classes(self) -> HTMLClassAttribute:
@@ -52,7 +52,7 @@ class ChildableHTMLContainer(HTMLContainer):
 
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
-        return f"<{self.type}{attributes_str}>{self.childs}</{self.type}>"
+        return f"<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}>"
 
     def add_child(self, *childs: HTMLContainerBase):
         for child in childs:

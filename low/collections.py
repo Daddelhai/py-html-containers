@@ -23,7 +23,7 @@ class HTMLAttributesDict(DictBase[str, HTMLAttribute]):
         test = ' '.join(str(x) for x in self._data.values() if x)
         return test
 
-    def __setitem__(self, key: str, value: str):
+    def __setitem__(self, key: str, value):
         if key == "class":
             self._data[key] = HTMLClassAttribute(value.split())
         else:
