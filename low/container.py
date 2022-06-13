@@ -2,7 +2,6 @@ from .collections import HTMLContainerList, HTMLAttributesDict
 from .base import HTMLContainerBase
 from .attributes import HTMLClassAttribute
 from typing import Optional, Union
-from contextlib import contextmanager
 
 
 class Text(HTMLContainerBase):
@@ -32,14 +31,6 @@ class HTMLContainer(HTMLContainerBase):
     @property
     def classes(self) -> HTMLClassAttribute:
         return self.attr["class"]
-
-    @classmethod
-    @contextmanager
-    def AsChildOf(cls, parent, *args, **kwargs):
-        child = cls(*args, **kwargs)
-        parent.add_child(child)
-
-        yield child
 
 
 

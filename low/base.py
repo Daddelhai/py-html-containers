@@ -1,5 +1,6 @@
 from typing import TypeVar, Generic
 import abc
+from contextlib import contextmanager
 
 T = TypeVar('T')
 K = TypeVar('K', int, str)
@@ -9,6 +10,14 @@ class HTMLContainerBase:
     @abc.abstractmethod
     def __str__(self):
         pass
+
+    @classmethod
+    @contextmanager
+    def AsChildOf(cls, parent, *args, **kwargs):
+        child = cls(*args, **kwargs)
+        parent.add_child(child)
+
+        yield child
 
 
 class ListBase(Generic[T]):
