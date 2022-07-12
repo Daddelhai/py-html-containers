@@ -33,8 +33,8 @@ class ListBase(Generic[T]):
     def __setitem__(self, key: int, value: T):
         self._data[key] = value
 
-    def append(self, value: T):
-        self._data.append(value)
+    def add(self, value: T):
+        self._data.add(value)
 
     def __bool__(self):
         return bool(self._data)
