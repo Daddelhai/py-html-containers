@@ -24,8 +24,8 @@ class HTMLAttributesDict(DictBase[str, HTMLAttribute]):
         return test
 
     def __setitem__(self, key: str, value):
-        if key == "class":
-            self._data[key] = HTMLClassAttribute(value.split())
+        if key == "classes" or key == "cls":
+            self._data["classes"] = HTMLClassAttribute(value.split())
         else:
             self._data[key] = HTMLAttribute(key, value)
 
@@ -33,9 +33,9 @@ class HTMLAttributesDict(DictBase[str, HTMLAttribute]):
         return self.__setitem__(key, value)
 
     def __getitem__(self, key: str):
-        if key == "class":
+        if key == "classes" or key == "cls":
             if key in self._data:
-                return self._data[key]
+                return self._data["classes"]
             else:
                 self._data[key] = HTMLClassAttribute()
                 return self._data[key]
