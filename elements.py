@@ -132,5 +132,4 @@ class Option(HTMLContainer):
         return f"<{self._objtype}{attributes_str}>{self.text}</{self._objtype}>"
 
 
-# fmt: off
-from .specialelements import *
+from .specialelements import * # fmt: skip
