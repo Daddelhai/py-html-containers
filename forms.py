@@ -27,7 +27,7 @@ class HTMLForm(HTMLContainerBase):
             if not isinstance(element, HTMLContainerBase):
                 raise TypeError("invalid form element")
 
-            elem.attr.name = key
+            element.attr.name = key
             form.add_child(element)
 
         if "csrfmiddlewaretoken" not in self.__dict__:
