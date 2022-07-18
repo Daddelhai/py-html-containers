@@ -131,3 +131,7 @@ class Option(HTMLContainer):
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
         return f"<{self._objtype}{attributes_str}>{self.text}</{self._objtype}>"
+
+
+# fmt: off
+from .specialelements import *
