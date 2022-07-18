@@ -1,5 +1,6 @@
 from .specialelements import *
 from .low.container import HTMLContainer, ChildableHTMLContainer, Text
+from .low.base import HTMLContainerBase
 
 
 class Div(ChildableHTMLContainer):
@@ -77,16 +78,6 @@ class Textarea(ChildableHTMLContainer):
         super().__init__("textarea", *args, **kwargs)
 
 
-class Select(ChildableHTMLContainer):
-    def __init__(self, *args, **kwargs):
-        super().__init__("input", *args, **kwargs)
-
-
-class Option(HTMLContainer):
-    def __init__(self, *args, **kwargs):
-        super().__init__("option", *args, **kwargs)
-
-
 class Grid(ChildableHTMLContainer):
     def __init__(self, *args, **kwargs):
         super().__init__("grid", *args, **kwargs)
@@ -125,3 +116,18 @@ class Input(HTMLContainer):
             self.attr.readonly = True
         if required:
             self.attr.required = True
+
+
+class Option(HTMLContainer):
+    def __init__(self, text, value, selected: bool = False, *args, **kwargs):
+        super().__init__("option", *args, **kwargs)
+
+        self.text = text
+        self.attr.value = value
+
+        if selected:
+            self.attr.selected = True
+
+    def __str__(self):
+        attributes_str = ' '+str(self.attr) if self.attr else ''
+        return f"<{self._objtype}{attributes_str}>{self.text}</{self._objtype}>"

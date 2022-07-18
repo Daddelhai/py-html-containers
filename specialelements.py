@@ -1,5 +1,6 @@
 import django.middleware.csrf as csrf
-from .elements import Input
+from .low.container import HTMLContainer, ChildableHTMLContainer, Text
+from .elements import Input, Option
 
 
 class DjangoCSRFToken(Input):
@@ -80,3 +81,22 @@ class TextInput(Input):
             self.attr.min = minlength
         if pattern is not None:
             self.attr.pattern = pattern
+
+
+class Select(ChildableHTMLContainer):
+    def __init__(self, selected=None, options: dict = None, *args, **kwargs):
+        super().__init__("select", *args, **kwargs)
+
+        if self.options is not None:
+            self.__populate(self.options)
+        elif options is not None:
+            self.__populate(options)
+
+    def __populate(self, items):
+        for key, value in items.items():
+            self.add_child(
+                Option(
+                    key,
+                    value,
+                    selected=True if selected is not None and selected == value else False)
+            )
