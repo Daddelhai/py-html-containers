@@ -93,10 +93,19 @@ class Select(ChildableHTMLContainer):
             self.__populate(options)
 
     def __populate(self, items):
-        for key, value in items.items():
-            self.add_child(
-                Option(
-                    key,
-                    value,
-                    selected=True if selected is not None and selected == value else False)
-            )
+        if isinstance(items, dict):
+            for value, text in items.items():
+                self.add_child(
+                    Option(
+                        text,
+                        value,
+                        selected=True if selected is not None and selected == value else False)
+                )
+        else:
+            for value in items:
+                self.add_child(
+                    Option(
+                        value,
+                        value,
+                        selected=True if selected is not None and selected == value else False)
+                )
