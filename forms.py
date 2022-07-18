@@ -5,6 +5,7 @@ from .low.base import HTMLContainerBase
 class HTMLForm(HTMLContainerBase):
 
     def __init__(self, method="POST", action=None, **kwargs):
+
         if "attributes" in kwargs:
             kwargs["attributes"]["method"] = method.upper()
         else:
@@ -30,7 +31,5 @@ class HTMLForm(HTMLContainerBase):
             element.attr.name = key
             form.add_child(element)
 
-        if "csrfmiddlewaretoken" not in self.__dict__:
-            form.add_child(DjangoCSRFToken())
-
         return str(form)
+
