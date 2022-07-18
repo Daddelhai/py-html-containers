@@ -1,4 +1,3 @@
-from .specialelements import *  # fmt: skip
 from .low.container import HTMLContainer, ChildableHTMLContainer, Text
 from .low.base import HTMLContainerBase
 
@@ -139,3 +138,6 @@ class Option(HTMLContainer):
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
         return f"<{self._objtype}{attributes_str}>{self.text}</{self._objtype}>"
+
+
+from .specialelements import *  # fmt: off
