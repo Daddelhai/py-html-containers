@@ -55,14 +55,14 @@ class DateTimeInput(Input):
 
 
 class DateInput(DateTimeInput):
-    def __init__(self, value=None, max=None, min=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.attr.type = "date"
 
 
 class TimeInput(DateTimeInput):
-    def __init__(self, value=None, max=None, min=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.attr.type = "time"
@@ -81,6 +81,13 @@ class TextInput(Input):
             self.attr.min = minlength
         if pattern is not None:
             self.attr.pattern = pattern
+
+
+class PasswordInput(TextInput):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.attr.type = "password"
 
 
 class Select(ChildableHTMLContainer):
