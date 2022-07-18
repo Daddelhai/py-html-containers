@@ -123,6 +123,6 @@ class Select(ChildableHTMLContainer):
 
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
-        if label is not None:
-            return f"<label>{label}:<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}></label>"
+        if self.label is not None:
+            return f"<label>{self.label}:<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}></label>"
         return f"<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}>"
