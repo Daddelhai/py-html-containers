@@ -94,6 +94,8 @@ class Select(ChildableHTMLContainer):
     def __init__(self, selected=None, options: dict = None, *args, **kwargs):
         super().__init__("select", *args, **kwargs)
 
+        self.selected = selected
+
         if self.options is not None:
             self.__populate(self.options)
         elif options is not None:
@@ -106,7 +108,7 @@ class Select(ChildableHTMLContainer):
                     Option(
                         text,
                         value,
-                        selected=True if selected is not None and selected == value else False)
+                        selected=True if self.selected is not None and self.selected == value else False)
                 )
         else:
             for value in items:
@@ -114,5 +116,5 @@ class Select(ChildableHTMLContainer):
                     Option(
                         value,
                         value,
-                        selected=True if selected is not None and selected == value else False)
+                        selected=True if self.selected is not None and self.selected == value else False)
                 )
