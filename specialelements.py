@@ -91,7 +91,7 @@ class PasswordInput(TextInput):
 
 
 class Select(ChildableHTMLContainer):
-    def __init__(self, selected=None, options: dict = None, *args, **kwargs):
+    def __init__(self, selected=None, label=None, options: dict = None, *args, **kwargs):
         super().__init__("select", *args, **kwargs)
 
         self.selected = selected
@@ -100,6 +100,8 @@ class Select(ChildableHTMLContainer):
             self.__populate(self.options)
         elif options is not None:
             self.__populate(options)
+
+        self.label = label
 
     def __populate(self, items):
         if isinstance(items, dict):
@@ -118,3 +120,9 @@ class Select(ChildableHTMLContainer):
                         value,
                         selected=True if self.selected is not None and self.selected == value else False)
                 )
+
+    def __str__(self):
+        attributes_str = ' '+str(self.attr) if self.attr else ''
+        if label is not None:
+            return f"<label>{label}:<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}></label>"
+        return f"<{self._objtype}{attributes_str}>{self.childs}</{self._objtype}>"
