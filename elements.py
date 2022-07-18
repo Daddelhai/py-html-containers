@@ -1,3 +1,4 @@
+from .specialelements import *  # fmt: skip
 from .low.container import HTMLContainer, ChildableHTMLContainer, Text
 from .low.base import HTMLContainerBase
 
@@ -103,7 +104,7 @@ class Body(ChildableHTMLContainer):
 
 
 class Input(HTMLContainer):
-    def __init__(self, type=None, placeholder=None, readonly=False, required=False, *args, **kwargs):
+    def __init__(self, type=None, placeholder=None, readonly=False, required=False, label=None, *args, **kwargs):
         super().__init__("input", *args, **kwargs)
 
         if type is not None:
@@ -115,6 +116,14 @@ class Input(HTMLContainer):
             self.attr.readonly = True
         if required:
             self.attr.required = True
+
+        self.label = label
+
+    def __str__(self):
+        attributes_str = ' '+str(self.attr) if self.attr else ''
+        if label is not None:
+            return f"<label>{label}:<{self._objtype}{attributes_str}/></label>"
+        return f"<{self._objtype}{attributes_str}/>"
 
 
 class Option(HTMLContainer):
@@ -130,6 +139,3 @@ class Option(HTMLContainer):
     def __str__(self):
         attributes_str = ' '+str(self.attr) if self.attr else ''
         return f"<{self._objtype}{attributes_str}>{self.text}</{self._objtype}>"
-
-
-from .specialelements import * # fmt: skip
