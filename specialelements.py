@@ -76,9 +76,9 @@ class TextInput(Input):
         if value is not None:
             self.attr.value = value
         if maxlength is not None:
-            self.attr.max = maxlength
+            self.attr.maxlength = maxlength
         if minlength is not None:
-            self.attr.min = minlength
+            self.attr.minlength = minlength
         if pattern is not None:
             self.attr.pattern = pattern
 
