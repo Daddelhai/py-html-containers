@@ -103,11 +103,13 @@ class Body(ChildableHTMLContainer):
 
 
 class Input(HTMLContainer):
-    def __init__(self, type=None, placeholder=None, readonly=False, required=False, label=None, *args, **kwargs):
+    def __init__(self, type=None, value=None, placeholder=None, readonly=False, required=False, label=None, *args, **kwargs):
         super().__init__("input", *args, **kwargs)
 
         if type is not None:
             self.attr.type = type
+        if value is not None:
+            self.attr.value = value
         if placeholder is not None:
             self.attr.placeholder = placeholder
 

@@ -29,12 +29,10 @@ class Checkbox(Input):
 
 
 class NumberInput(Input):
-    def __init__(self, value=None, max=None, min=None, *args, **kwargs):
+    def __init__(self, max=None, min=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.attr.type = "number"
-        if value is not None:
-            self.attr.value = value
         if max is not None:
             self.attr.max = max
         if min is not None:
@@ -42,12 +40,10 @@ class NumberInput(Input):
 
 
 class DateTimeInput(Input):
-    def __init__(self, value=None, max=None, min=None, *args, **kwargs):
+    def __init__(self, max=None, min=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.attr.type = "datetime"
-        if value is not None:
-            self.attr.value = value
         if max is not None:
             self.attr.max = max
         if min is not None:
@@ -69,12 +65,10 @@ class TimeInput(DateTimeInput):
 
 
 class TextInput(Input):
-    def __init__(self, value=None, maxlength=None, minlength=None, pattern=None, *args, **kwargs):
+    def __init__(self, maxlength=None, minlength=None, pattern=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.attr.type = "text"
-        if value is not None:
-            self.attr.value = value
         if maxlength is not None:
             self.attr.maxlength = maxlength
         if minlength is not None:
